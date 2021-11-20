@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+//override Bootstrap variables and custom mixins
+@import "scss/variables";
+
+//reboot
+@import "scss/reboot";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+//custom code/partials
+@import "scss/custom";

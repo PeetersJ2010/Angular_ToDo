@@ -1,0 +1,21 @@
+@import '/src/scss/variables';
+
+.date-time-component{
+  border-left: 4px $danger solid;
+  *{
+    color: $text;
+  }
+  .date-time-today{
+    letter-spacing: 2px;
+    font-size: 1.6rem;
+    line-height: 30px;
+  }
+  .date-time-date{
+    font-size: 1.8rem;
+    line-height: 30px;
+  }
+  .date-time-time{
+    font-size: 1.2rem;
+    line-height: 30px;
+  }
+}

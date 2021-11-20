@@ -1,0 +1,52 @@
+@import "src/scss/variables";
+
+.main-list-list{
+  .sort{
+    border-radius: 50px;
+  }
+  .lists{
+    .selected{
+      font-weight: bold;
+      p{
+        color: $primary;
+      }
+    }
+    .list{
+      &:hover{
+        cursor: pointer;
+      }
+      &:hover p{
+        font-weight: bold;
+        color: $primary;
+      }
+      p{
+        transition: all 0.1s;
+        font-size: 1.5rem;
+      }
+    }
+
+  }
+
+
+  .list-color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  .red{
+    background-color: $red;
+  }
+
+  .green{
+    background-color: $green;
+  }
+
+  .blue{
+    background-color: $blue;
+  }
+
+  .orange{
+    background-color: $orange;
+  }
+}

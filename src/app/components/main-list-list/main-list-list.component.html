@@ -1,0 +1,25 @@
+<div class="px-4 pt-4 main-list-list h-100 d-flex flex-column justify-content-between">
+  <div>
+    <div class="d-flex justify-content-between align-items-center ">
+      <h2 class="text-primary">Lists</h2>
+      <div class="list-count d-flex justify-content-center align-items-center shadow-sm">
+        <span>{{lists.length}}</span>
+      </div>
+    </div>
+    <button class="pill btn btn-white shadow" (click)="sortLists()">Order by: {{listOrder}}</button>
+    <div class="lists mt-4">
+      <div *ngFor="let list of lists" class="d-flex align-items-center list noSelect" (click)="detail(list.id)"
+           id="{{list.id}}">
+        <div class="{{list.color}} list-color"></div>
+        <p class="mb-0 pl-3">
+          {{ list.title}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary d-flex add justify-content-center align-items-center shadow-sm mb-3" (click)="addNewList()">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+</div>

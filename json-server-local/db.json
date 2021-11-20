@@ -1,0 +1,58 @@
+{
+  "lists": [
+    {
+      "id": 0,
+      "completed": false,
+      "title": "List 1",
+      "color": "red"
+    },
+    {
+      "id": 1,
+      "completed": false,
+      "title": "List 2",
+      "color": "red"
+    },
+    {
+      "id": 2,
+      "completed": false,
+      "title": "List 3",
+      "color": "green"
+    },
+    {
+      "id": 3,
+      "completed": false,
+      "title": "List 4",
+      "color": "blue"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0,
+      "listId": 0,
+      "completed": false,
+      "title": "Task 1",
+      "deadline": "16/11/2021"
+    },
+    {
+      "id": 1,
+      "listId": 0,
+      "completed": false,
+      "title": "Task 2",
+      "deadline": "16/11/2021"
+    },
+    {
+      "id": 2,
+      "listId": 2,
+      "completed": false,
+      "title": "Task 3",
+      "deadline": "16/11/2021"
+    },
+    {
+      "id": 3,
+      "listId": 3,
+      "completed": false,
+      "title": "Task 4",
+      "deadline": "16/11/2021"
+    }
+  ]
+}

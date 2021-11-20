@@ -1,0 +1,15 @@
+<div class="header-row bg-white shadow d-flex justify-content-start align-items-center">
+  <div class="header-profile d-flex flex-column align-items-center justify-content-center">
+    <img src="assets/images/Afbeelding1.png" alt="">
+    <p class="text-white">Hello, {{name}}</p>
+  </div>
+  <app-date-time></app-date-time>
+  <div class="ml-5 d-flex flex-column">
+    <h3 class="text-primary mb-3">
+      Today's tasks:
+    </h3>
+    <div class="d-flex">
+      <app-header-tasks *ngFor="let task of tasks" [task]="task"></app-header-tasks>
+    </div>
+  </div>
+</div>

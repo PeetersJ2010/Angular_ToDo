@@ -1,0 +1,11 @@
+@import "src/scss/variables";
+
+.main{
+  height: 100% !important;
+  .row{
+    height: 100%;
+    .rounded-corner{
+      border-radius: 40px;
+    }
+  }
+}

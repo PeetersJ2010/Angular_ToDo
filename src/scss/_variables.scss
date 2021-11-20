@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+// Body
+$body-bg: #F5F5F5;
+
+// Typography
+$font-family-text: 'Roboto', sans-serif;
+$font-size-base: 1.1rem;
+$line-height-base: 1.6;
+$text: #1B1B1B;
+
+// Base
+$primary: #2F5D62;
+$secondary: #5E8B7E;
+$danger:  #A7C4BC;
+$success: #DFEEEA;
+$warning: #169BD5;
+$grey: #d5dbe3;
+$dark-blue: #004F71;
+$success-green: #28a745;
+$price-card-green: #55CD59;
+$danger-red: #dc3545;
+$price-card-red: #FF5A5A;
+$orange: #f79c2d;
+
+// List-colors
+$red: #DD5555;
+$blue: #558BDD;
+$green: #8BD666;
+$orange: #F5A35C;
+
+
+// Extra
+$shadow: rgba(0,0,0, 0.25);
+$nav: rgba(248, 249, 250, 0.6);
+$nav_alt: #F1F1F1;
+$hero-card: #FCFCFC;
+$page-background: #F7F7F7;
+
+// Theme
+$theme-colors: (
+  'primary': $primary,
+  'secondary' : $secondary,
+  'danger': $danger,
+  'success': $success,
+  'warning': $warning,
+  'grey': $grey,
+  'darkblue': $dark-blue,
+  'green': $success-green,
+  'red': $danger-red,
+  'orange': $orange,
+  'nav' : $nav,
+  'nav-alt': $nav_alt,
+  'hero-card' : $hero-card,
+  'text' : $text,
+  'pb' : $page-background,
+  'pc-green': $price-card-green,
+  'pc-red': $price-card-red
+);
+

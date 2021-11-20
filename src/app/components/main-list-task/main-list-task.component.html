@@ -1,0 +1,18 @@
+<div *ngIf="list" class="px-4 pt-4 main-list-list">
+  <div class="d-flex justify-content-between align-items-center ">
+    <h2 class="text-primary">{{list.title}}</h2>
+    <div class="list-count d-flex justify-content-center align-items-center shadow-sm">
+      <span>{{tasks.length}}</span>
+    </div>
+  </div>
+  <button class="pill btn btn-white shadow" (click)="sortTasks()">Order by: {{taskOrder}}</button>
+<!--  <div class="lists mt-4">-->
+<!--    <div *ngFor="let list of lists" class="d-flex align-items-center list noSelect" (click)="detail(list.id)" id="{{list.id}}">-->
+<!--      <div class="{{list.color}} list-color"></div>-->
+<!--      <p class="mb-0 pl-3">-->
+<!--        {{ list.title}}-->
+<!--      </p>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+
