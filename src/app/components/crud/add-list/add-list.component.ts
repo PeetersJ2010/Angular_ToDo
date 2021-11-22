@@ -5,6 +5,7 @@ import {ListService} from "../../../services/list.service";
 import {Subscription} from "rxjs";
 import {List} from "../../../interfaces/list";
 import {Task} from "../../../interfaces/task";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-list',
@@ -26,7 +27,7 @@ export class AddListComponent implements OnInit {
   //   color: new FormControl('', [Validators.required]),
   // });
 
-  constructor(private listService: ListService, private bsModalRef: BsModalRef) {
+  constructor(private listService: ListService, private bsModalRef: BsModalRef, private router: Router) {
   }
 
   onListFormSubmit() {
@@ -37,8 +38,17 @@ export class AddListComponent implements OnInit {
     //   completed: false,
     // });
     this.addList$ = this.listService.addList(this.list).subscribe(result => {
-        console.log(result.id);
+        this.event.emit('OK');
         this.bsModalRef.hide();
+
+        // Clear the task list component
+        this.router.navigate(['/']);
+
+        // Load the correct component after 10 ms
+        setTimeout(()=>{
+          this.router.navigate(['/', result.id]);
+        }, 10);
+
       },
       error => {
         this.errorMessage = error.message;

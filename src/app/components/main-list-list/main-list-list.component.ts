@@ -37,11 +37,11 @@ export class MainListListComponent implements OnInit {
 
   addNewList() {
     this.bsModalRef = this.bsModalService.show(AddListComponent);
-    // this.bsModalRef.content.event.subscribe(result => {
-    //   if (result == 'OK') {
-    //     this.getPosts();
-    //   }
-    // });
+    this.bsModalRef.content.event.subscribe((result:String) => {
+      if (result == 'OK') {
+        this.getLists();
+      }
+    });
   }
 
   // add() {

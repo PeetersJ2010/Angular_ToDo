@@ -14,6 +14,7 @@ import { MainListTaskComponent } from './components/main-list-task/main-list-tas
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { AddListComponent } from './components/crud/add-list/add-list.component';
 import { BsModalService} from "ngx-bootstrap/modal";
+import { DeleteListComponent } from './components/crud/delete-list/delete-list.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { BsModalService} from "ngx-bootstrap/modal";
     MainListListComponent,
     MainListTaskComponent,
     ListDetailComponent,
-    AddListComponent
+    AddListComponent,
+    DeleteListComponent
   ],
   imports: [
     BrowserModule,

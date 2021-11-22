@@ -1,0 +1,15 @@
+<h4 class="text-primary">Remove list</h4>
+<hr class="px-3 my-2">
+<div class="modal-body px-0">
+  <div class="alert alert-red fade show" role="alert">
+    All tasks within the list will be deleted!
+  </div>
+  <h4>
+    Are you sure you want to delete the list: {{title}}
+  </h4>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Close</button>
+  <button type="button" class="btn btn-red" (click)="deletePost(listId)">Delete list</button>
+</div>
+

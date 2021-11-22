@@ -3,6 +3,9 @@ import {List} from 'src/app/interfaces/list';
 import {Task} from 'src/app/interfaces/task';
 import {TaskService} from "../../services/task.service";
 import {Subscription} from "rxjs";
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {DeleteListComponent} from "../crud/delete-list/delete-list.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-list-task',
@@ -14,11 +17,28 @@ export class MainListTaskComponent implements OnInit {
   tasks: Task[] = [];
   tasks$: Subscription = new Subscription();
   taskOrder = "Ascending";
+  bsModalRef: BsModalRef = new BsModalRef();
 
-  constructor(private taskService:TaskService) {
+  constructor(private taskService:TaskService, private bsModalService: BsModalService, private router: Router) {
   }
   ngOnInit(): void {
     this.waitForList();
+  }
+  ngOnDestroy(): void{
+    this.tasks$.unsubscribe();
+  }
+
+  deleteList(listId: number, title: String) {
+    console.log(listId);
+    this.bsModalRef = this.bsModalService.show(DeleteListComponent);
+    this.bsModalRef.content.listId = listId;
+    this.bsModalRef.content.title = title;
+    this.bsModalRef.content.event.subscribe((result:String) => {
+      if (result == 'OK') {
+        // Clear the task list component
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   // Recursive function that waits until the list is received from the API

@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
       <label class="control-label" for="colors">Color</label>
-      <select class="form-control" name="color" id="colors">
+      <select class="form-control" name="color" id="colors" [(ngModel)]="list.color">
         <option *ngFor="let item of colors" [value]="item" class="{{item}}">{{item.toString() | titlecase}}</option>
       </select>
     </div>
