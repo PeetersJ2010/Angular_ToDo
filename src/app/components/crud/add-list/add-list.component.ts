@@ -15,10 +15,13 @@ import {Router} from "@angular/router";
 export class AddListComponent implements OnInit {
 
   addList$: Subscription = new Subscription();
+  editList$: Subscription = new Subscription();
   colors: String[] = ["red", "green", "blue", "orange"];
   event: EventEmitter<any> = new EventEmitter();
 
-  list:List = {id: 0, completed: false, title: "", color: "red"}
+  list:List = {id: 0, completed: "0/0", title: "", color: "red"}
+  editMode = false;
+  listTitle: String = "";
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
@@ -32,34 +35,46 @@ export class AddListComponent implements OnInit {
 
   onListFormSubmit() {
     this.isSubmitted = true;
-    // this.addNewListForm.setValue({
-    //   title: this.addNewListForm.get('title')!.value,
-    //   color: this.addNewListForm.get('colors')!.value,
-    //   completed: false,
-    // });
-    this.addList$ = this.listService.addList(this.list).subscribe(result => {
-        this.event.emit('OK');
-        this.bsModalRef.hide();
 
-        // Clear the task list component
-        this.router.navigate(['/']);
 
-        // Load the correct component after 10 ms
-        setTimeout(()=>{
-          this.router.navigate(['/', result.id]);
-        }, 10);
 
-      },
-      error => {
-        this.errorMessage = error.message;
-      });
-    // this.blogService.addPost(postData).subscribe(data=>{
-    //   console.log(data);
-    //   if(data!=null && data>0){
-    //     this.event.emit('OK');
-    //     this.bsModalRef.hide();
-    //   }
-    // });
+
+    if (!this.editMode){
+      this.addList$ = this.listService.addList(this.list).subscribe(result => {
+          this.event.emit('OK');
+          this.bsModalRef.hide();
+
+          // Clear the task list component
+          this.router.navigate(['/']);
+
+          // Load the correct component after 10 ms
+          setTimeout(()=>{
+            this.router.navigate(['/', result.id]);
+          }, 10);
+
+        },
+        error => {
+          this.errorMessage = error.message;
+        });
+    }else{
+      this.editList$ = this.listService.editList(this.list.id, this.list).subscribe(result => {
+          this.event.emit('OK');
+          this.bsModalRef.hide();
+
+          // Clear the task list component
+          this.router.navigate(['/']);
+
+          // Load the correct component after 10 ms
+          setTimeout(()=>{
+            this.router.navigate(['/', result.id]);
+          }, 10);
+        },
+        error => {
+          this.errorMessage = error.message;
+        });
+    }
+
+
   }
 
   // get title() {
@@ -71,6 +86,7 @@ export class AddListComponent implements OnInit {
 
   ngOnDestroy(): void{
     this.addList$.unsubscribe();
+    this.editList$.unsubscribe();
   }
 
 

@@ -2,69 +2,45 @@
   "lists": [
     {
       "id": 0,
-      "completed": false,
+      "completed": "1/2",
       "title": "List 1",
       "color": "red"
     },
     {
       "id": 1,
-      "completed": false,
+      "completed": "0/0",
       "title": "List 2",
       "color": "red"
     },
     {
       "id": 2,
-      "completed": false,
+      "completed": "1/1",
       "title": "List 3",
       "color": "green"
     },
     {
       "id": 3,
-      "completed": false,
-      "title": "List 4",
+      "completed": "1/1",
+      "title": "List 4fe",
       "color": "blue"
     },
     {
       "id": 4,
-      "completed": false,
-      "title": "ddddd",
+      "completed": "0/0",
+      "title": "ffff",
       "color": "red"
     },
     {
       "id": 5,
-      "completed": false,
-      "title": "kdzidiqzd",
-      "color": "red"
+      "completed": "0/0",
+      "title": "omiahj",
+      "color": "blue"
     },
     {
       "id": 6,
-      "completed": false,
-      "title": "dozjodzqd",
-      "color": "red"
-    },
-    {
-      "id": 8,
-      "completed": false,
-      "title": "ojdzoif",
-      "color": "red"
-    },
-    {
-      "id": 5,
-      "completed": false,
-      "title": "kdzidiqzd",
-      "color": "red"
-    },
-    {
-      "id": 6,
-      "completed": false,
-      "title": "dozjodzqd",
-      "color": "red"
-    },
-    {
-      "id": 8,
-      "completed": false,
-      "title": "ojdzoif",
-      "color": "red"
+      "completed": "0/0",
+      "title": "hee",
+      "color": "green"
     }
   ],
   "tasks": [
@@ -78,21 +54,21 @@
     {
       "id": 1,
       "listId": 0,
-      "completed": false,
+      "completed": true,
       "title": "Task 2",
       "deadline": "16/11/2021"
     },
     {
       "id": 2,
       "listId": 2,
-      "completed": false,
+      "completed": true,
       "title": "Task 3",
       "deadline": "16/11/2021"
     },
     {
       "id": 3,
       "listId": 3,
-      "completed": false,
+      "completed": true,
       "title": "Task 4",
       "deadline": "16/11/2021"
     }

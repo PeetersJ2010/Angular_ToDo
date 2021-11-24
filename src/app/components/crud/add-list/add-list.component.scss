@@ -1,5 +1,5 @@
 option:after {
-  content: " ";
+  content: "qdzoiuh ";
   height: 5px;
   width: 5px;
   border-radius: 5px;
@@ -9,11 +9,3 @@ option:after {
 option.red:after { background: #c00; }
 option.green:after { background: #0c0; }
 option.blue:after { background: #00c; }
-
-select option:checked {
-  background: #ff9500 -webkit-linear-gradient(bottom, #ff9500 0%, #ff9500 100%);
-}
-select option:hover {
-  background: #ff9500 -webkit-linear-gradient(bottom, #ff9500 0%, #ff9500 100%) !important;
-  color: #fff;
-}

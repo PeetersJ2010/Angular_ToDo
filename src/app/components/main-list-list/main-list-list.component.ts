@@ -3,8 +3,11 @@ import {Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {List} from 'src/app/interfaces/list';
 import {ListService} from 'src/app/services/list.service';
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import {BsModalService, BsModalRef} from "ngx-bootstrap/modal";
 import {AddListComponent} from "../crud/add-list/add-list.component";
+import {ListTaskService} from "../../services/list-task.service";
+import {Task} from "../../interfaces/task";
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-main-list-list',
@@ -14,66 +17,77 @@ import {AddListComponent} from "../crud/add-list/add-list.component";
 export class MainListListComponent implements OnInit {
   lists: List[] = [];
   lists$: Subscription = new Subscription();
+  // tasks: Task[] = [];
+  // tasks$: Subscription = new Subscription();
+  editList$: Subscription = new Subscription();
   deleteList$: Subscription = new Subscription();
+  reloadList$: Subscription = new Subscription();
+  prevId$: Subscription = new Subscription();
   bsModalRef: BsModalRef = new BsModalRef();
 
-  public selectedList: Observable<List> = new Observable<List>();
-
-  errorMessage: string = '';
   listOrder = "Ascending";
-  color = "red";
   prevId: number = -1;
 
-  constructor(private listService: ListService, private router: Router, private bsModalService: BsModalService) { }
+  constructor(private listService: ListService, private router: Router, private bsModalService: BsModalService, private listTaskService: ListTaskService, private taskService: TaskService) {
+    this.reloadList$ = this.listTaskService.reloadLists.subscribe((state: boolean) => {
+      setTimeout(() => {
+        this.getLists();
+      }, 100);
+    });
+  }
 
   ngOnInit(): void {
     this.getLists();
-  }
-
-  ngOnDestroy(): void {
-    this.lists$.unsubscribe();
-    this.deleteList$.unsubscribe();
+    // this.getTasks();
   }
 
   addNewList() {
     this.bsModalRef = this.bsModalService.show(AddListComponent);
-    this.bsModalRef.content.event.subscribe((result:String) => {
+    this.bsModalRef.content.editMode = false;
+    this.bsModalRef.content.event.subscribe((result: String) => {
       if (result == 'OK') {
         this.getLists();
+        setTimeout(() => {
+          let currentId = this.router.url.substring(1)
+          this.selectListElement(currentId);
+          this.prevId = +currentId;
+        }, 100);
       }
     });
   }
 
-  // add() {
-  //   //Navigate to form in add mode
-  //   this.router.navigate(['admin/status/form'], {state: {mode: 'add'}});
-  // }
-  //
-  // edit(id: number) {
-  //   //Navigate to form in edit mode
-  //   this.router.navigate(['admin/status/form'], {state: {id: id, mode: 'edit'}});
-  // }
+  selectListElement(id: string) {
+    // Select the current list in the lists list
+    let listElement = document.getElementById(id);
+    listElement!.className = 'd-flex align-items-center list noSelect selected';
+  }
 
-  // delete(id: number) {
-  //   this.deleteList$ = this.listService.deleteList(id).subscribe(result => {
-  //     //all went well
-  //     this.getLists();
-  //   }, error => {
-  //     //error
-  //     this.errorMessage = error.message;
+  getLists() {
+    this.lists$ = this.listService.getLists().subscribe(result => {
+      this.lists = result;
+      // this.setCompletedTasks();
+    });
+
+    // Call only when editing
+    // setTimeout(() => {
+    //   if (this.prevId != -1) this.selectListElement(this.prevId.toString());
+    // }, 100);
+
+  }
+
+  // getTasks() {
+  //   this.tasks$ = this.taskService.getAllTasks().subscribe(result => {
+  //     this.tasks = result;
+  //     // this.setCompletedTasks();
   //   });
   // }
 
-  getLists() {
-    this.lists$ = this.listService.getLists().subscribe(result => this.lists = result);
-  }
 
-  sortLists(){
-    if (this.listOrder == "Ascending"){
+  sortLists() {
+    if (this.listOrder == "Ascending") {
       this.listOrder = "Descending";
       this.lists.sort((x, y) => (x.title > y.title ? -1 : 1));
-    }
-    else{
+    } else {
       this.listOrder = "Ascending";
       this.lists.sort((y, x) => (x.title > y.title ? -1 : 1));
     }
@@ -82,9 +96,11 @@ export class MainListListComponent implements OnInit {
   detail(id: number) {
     // Set styles
     let selected = document.getElementById(id.toString());
-    if (this.prevId != -1){
+    if (this.prevId != -1) {
       let prevSelected = document.getElementById(this.prevId.toString());
-      prevSelected!.className = 'd-flex align-items-center list noSelect';
+      if (prevSelected != null){
+        prevSelected!.className = 'd-flex align-items-center list noSelect';
+      }
     }
     selected!.className = 'd-flex align-items-center list noSelect selected';
     this.prevId = id;
@@ -92,9 +108,22 @@ export class MainListListComponent implements OnInit {
     // Clear the task list component
     this.router.navigate(['/'])
 
+    // let list = this.lists.find(element => element.id == id)!;
+    // this.listService.setSelectedList(list);
+
     // Load the correct component after 10 ms
-    setTimeout(()=>{
+    setTimeout(() => {
       this.router.navigate(['/', id]);
     }, 10);
+  }
+
+  ngOnDestroy(): void {
+    this.lists$.unsubscribe();
+    this.deleteList$.unsubscribe();
+    this.reloadList$.unsubscribe();
+    this.prevId$.unsubscribe();
+    // this.tasks$.unsubscribe();
+    this.editList$.unsubscribe();
+    this.bsModalRef.content.event.unsubscribe();
   }
 }

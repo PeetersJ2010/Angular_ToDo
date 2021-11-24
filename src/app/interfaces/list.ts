@@ -2,7 +2,7 @@ import {Task} from "./task";
 
 export interface List{
   id: number;
-  completed: boolean;
+  completed: String;
   title: String;
   color: String;
   tasks?: Task[];

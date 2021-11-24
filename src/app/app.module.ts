@@ -28,7 +28,7 @@ import { DeleteListComponent } from './components/crud/delete-list/delete-list.c
     MainListTaskComponent,
     ListDetailComponent,
     AddListComponent,
-    DeleteListComponent
+    DeleteListComponent,
   ],
   imports: [
     BrowserModule,

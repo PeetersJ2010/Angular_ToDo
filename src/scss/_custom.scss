@@ -1,7 +1,8 @@
 // Shared css classes
 @import "variables";
 
-.h-100{
+
+.h-100 {
   height: 100%;
 }
 
@@ -14,35 +15,45 @@
   user-select: none; /* Non-prefixed version, currently*/
 }
 
-.list-count{
-    color: white;
-    background-color: $primary;
-    border-radius: 50px;
-    width: 60px;
-    height: 50px;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
+.list-count {
+  color: white;
+  background-color: $primary;
+  border-radius: 50px;
+  width: 60px;
+  height: 50px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
-.pill{
+.pill {
   border-radius: 50px;
 }
 
-.add{
+.add {
   font-size: 1.9rem;
   border-radius: 50%;
   width: 60px;
   height: 60px;
 }
 
-.fa-trash, .fa-edit{
-  font-size: 1.4rem;
-  color: $text;
+.crud-btn {
+  .fa-trash, .fa-pen {
+    transition: all 0.2s;
+    font-size: 1.6rem;
+    color: $primary;
+  }
+  &:hover {
+    *{
+      color: $secondary;
+    }
+  }
 }
 
-.text-center{
+.text-center {
   text-align: center;
 }
+
+
 
 
 

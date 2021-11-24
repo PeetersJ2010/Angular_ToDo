@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {List} from "../../interfaces/list";
 import {ListService} from "../../services/list.service";
 import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-list-detail',
@@ -9,8 +10,14 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./list-detail.component.scss']
 })
 export class ListDetailComponent implements OnInit {
-  list: List = {id:-1, completed:false, title:"", color:""}
-  constructor(private listService:ListService, private route: ActivatedRoute) { }
+  list: List = {id:-1, completed:"", title:"", color:""}
+  list$ : Subscription = new Subscription();
+
+  constructor(private listService:ListService, private route: ActivatedRoute) {
+    // this.list$ = this.listService.selectedList.subscribe((list: List) => {
+    //   this.list = list;
+    // });
+  }
 
   ngOnInit(): void {
     const listId = this.route.snapshot.paramMap.get('id');
@@ -20,5 +27,9 @@ export class ListDetailComponent implements OnInit {
         this.listService.getList(+listId).subscribe(result => this.list = result);
       }
     }
+  }
+
+  ngOnDestroy(){
+    this.list$.unsubscribe();
   }
 }

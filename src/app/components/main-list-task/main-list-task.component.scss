@@ -1,1 +1,21 @@
+@import "src/scss/variables";
 
+.tasks{
+  .custom-switch{
+    //width: 100px !important;
+    //height: 30px !important;
+    z-index: 100 !important;
+  }
+  .crud-btn{
+    .fa-trash, .fa-pen {
+      font-size: 1.3rem;
+      color: $text;
+    }
+    &:hover{
+      *{
+        color: $secondary;
+      }
+    }
+
+  }
+}
