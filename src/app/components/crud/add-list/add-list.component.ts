@@ -25,20 +25,21 @@ export class AddListComponent implements OnInit {
   isSubmitted: boolean = false;
   errorMessage: string = "";
 
-  // addNewListForm = new FormGroup({
-  //   title: new FormControl('', [Validators.required]),
-  //   color: new FormControl('', [Validators.required]),
-  // });
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void{
+    this.addList$.unsubscribe();
+    this.editList$.unsubscribe();
+    this.event.unsubscribe();
+    this.bsModalRef.content.event.unsubscribe();
+  }
 
   constructor(private listService: ListService, private bsModalRef: BsModalRef, private router: Router) {
   }
 
   onListFormSubmit() {
     this.isSubmitted = true;
-
-
-
-
     if (!this.editMode){
       this.addList$ = this.listService.addList(this.list).subscribe(result => {
           this.event.emit('OK');
@@ -51,7 +52,7 @@ export class AddListComponent implements OnInit {
           setTimeout(()=>{
             this.router.navigate(['/', result.id]);
           }, 10);
-
+          this.addList$.unsubscribe();
         },
         error => {
           this.errorMessage = error.message;
@@ -68,6 +69,7 @@ export class AddListComponent implements OnInit {
           setTimeout(()=>{
             this.router.navigate(['/', result.id]);
           }, 10);
+          this.editList$.unsubscribe();
         },
         error => {
           this.errorMessage = error.message;
@@ -77,17 +79,6 @@ export class AddListComponent implements OnInit {
 
   }
 
-  // get title() {
-  //   return this.heroForm.get('name');
-  // }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void{
-    this.addList$.unsubscribe();
-    this.editList$.unsubscribe();
-  }
 
 
   onClose() {

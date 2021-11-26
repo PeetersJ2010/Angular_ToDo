@@ -24,7 +24,10 @@ export class ListDetailComponent implements OnInit {
     if (listId != null) {
       let listTemp = this.listService.getList(+listId) ?? null;
       if(listTemp != null) {
-        this.listService.getList(+listId).subscribe(result => this.list = result);
+        this.list$ = this.listService.getList(+listId).subscribe(result => {
+          this.list = result;
+          this.list$.unsubscribe();
+        });
       }
     }
   }

@@ -31,4 +31,12 @@ export class TaskService {
 
     return this.httpClient.put<Task>("http://localhost:3000/tasks/" + id, task, {headers: headers});
   }
+
+  addTask(task: Task): Observable<Task> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.post<Task>("http://localhost:3000/tasks", task, {headers: headers});
+  }
+
 }

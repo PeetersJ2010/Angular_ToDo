@@ -15,6 +15,9 @@ import { ListDetailComponent } from './components/list-detail/list-detail.compon
 import { AddListComponent } from './components/crud/add-list/add-list.component';
 import { BsModalService} from "ngx-bootstrap/modal";
 import { DeleteListComponent } from './components/crud/delete-list/delete-list.component';
+import { AddTaskComponent } from './components/crud/add-task/add-task.component';
+import { DeleteTaskComponent } from './components/crud/delete-task/delete-task.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,13 +32,16 @@ import { DeleteListComponent } from './components/crud/delete-list/delete-list.c
     ListDetailComponent,
     AddListComponent,
     DeleteListComponent,
+    AddTaskComponent,
+    DeleteTaskComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     BsModalService

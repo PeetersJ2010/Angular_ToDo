@@ -2,7 +2,7 @@
 
 .header-task-task{
   background-color: $secondary;
-  border-radius: 20px;
+  border-radius: 20px !important;
   color: white;
   &:first-of-type{
     margin-left: 0!important;

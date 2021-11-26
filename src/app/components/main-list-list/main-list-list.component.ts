@@ -17,8 +17,6 @@ import {TaskService} from "../../services/task.service";
 export class MainListListComponent implements OnInit {
   lists: List[] = [];
   lists$: Subscription = new Subscription();
-  // tasks: Task[] = [];
-  // tasks$: Subscription = new Subscription();
   editList$: Subscription = new Subscription();
   deleteList$: Subscription = new Subscription();
   reloadList$: Subscription = new Subscription();
@@ -33,12 +31,22 @@ export class MainListListComponent implements OnInit {
       setTimeout(() => {
         this.getLists();
       }, 100);
+      this.reloadList$.unsubscribe();
     });
   }
 
   ngOnInit(): void {
     this.getLists();
     // this.getTasks();
+  }
+
+  ngOnDestroy(): void {
+    this.lists$.unsubscribe();
+    this.deleteList$.unsubscribe();
+    this.reloadList$.unsubscribe();
+    this.prevId$.unsubscribe();
+    this.editList$.unsubscribe();
+    //this.bsModalRef.content.event.unsubscribe();
   }
 
   addNewList() {
@@ -52,6 +60,8 @@ export class MainListListComponent implements OnInit {
           this.selectListElement(currentId);
           this.prevId = +currentId;
         }, 100);
+
+        this.bsModalRef.content.event.unsubscribe();
       }
     });
   }
@@ -66,6 +76,7 @@ export class MainListListComponent implements OnInit {
     this.lists$ = this.listService.getLists().subscribe(result => {
       this.lists = result;
       // this.setCompletedTasks();
+      this.lists$.unsubscribe();
     });
 
     // Call only when editing
@@ -117,13 +128,5 @@ export class MainListListComponent implements OnInit {
     }, 10);
   }
 
-  ngOnDestroy(): void {
-    this.lists$.unsubscribe();
-    this.deleteList$.unsubscribe();
-    this.reloadList$.unsubscribe();
-    this.prevId$.unsubscribe();
-    // this.tasks$.unsubscribe();
-    this.editList$.unsubscribe();
-    this.bsModalRef.content.event.unsubscribe();
-  }
+
 }

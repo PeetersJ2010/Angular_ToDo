@@ -9,6 +9,7 @@ import {Event, Router} from "@angular/router";
 import {ListTaskService} from "../../services/list-task.service";
 import {AddListComponent} from "../crud/add-list/add-list.component";
 import {ListService} from "../../services/list.service";
+import {AddTaskComponent} from "../crud/add-task/add-task.component";
 
 @Component({
   selector: 'app-main-list-task',
@@ -40,28 +41,51 @@ export class MainListTaskComponent implements OnInit {
     this.tasks$.unsubscribe();
     this.editTask$.unsubscribe();
     this.editList$.unsubscribe();
+    //this.bsModalRef.content.event.unsubscribe();
   }
 
-  setCompleted(id: number, task: Task, list: List){
-    // Update the task
-    this.editTask$ = this.taskService.editTask(id, task).subscribe();
+  addNewTask() {
+    this.bsModalRef = this.bsModalService.show(AddTaskComponent);
+    this.bsModalRef.content.editMode = false;
+    this.bsModalRef.content.task.listId = this.list.id;
+    this.bsModalRef.content.event.subscribe((result: String) => {
+      if (result == 'OK') {
+        this.isEmpty = false;
+        this.getTasks();
+      }
+      this.bsModalRef.content.event.unsubscribe();
+      // setTimeout(() => {
+      //   this.bsModalRef.content.event.unsubscribe();
+      // }, 1000);
+    });
+  }
 
-    if (this.tasks.length > 0){
+  setCompleted(id: number, task: Task, list: List) {
+    // Update the task
+    this.editTask$ = this.taskService.editTask(id, task).subscribe(r => {
+      this.editTask$.unsubscribe();
+    });
+    this.calculateCompleted()
+  }
+
+  calculateCompleted() {
+    if (this.tasks.length > 0) {
       let totalTasks = this.tasks.length;
       let completedTasks = 0;
-      for(let task of this.tasks){
-        if (task.completed){
-          completedTasks ++;
+      for (let task of this.tasks) {
+        if (task.completed) {
+          completedTasks++;
         }
       }
-      list.completed = completedTasks.toString() + "/" + totalTasks.toString()
-    }else{
+      this.list.completed = completedTasks.toString() + "/" + totalTasks.toString()
+    } else {
       // No tasks found
-      list.completed = "0/0";
+      this.list.completed = "0/0";
     }
     // Update the list
-    this.editList$ = this.listService.editList(task.listId, list).subscribe();
-
+    this.editList$ = this.listService.editList(this.list.id, this.list).subscribe(r => {
+      this.editList$.unsubscribe();
+    });
     // Update the lists in the list-list component
     this.listTaskService.changeState(true);
   }
@@ -88,6 +112,7 @@ export class MainListTaskComponent implements OnInit {
         // Reload lists
         this.listTaskService.changeState(true);
         this.router.navigate(['/']);
+        this.bsModalRef.content.event.unsubscribe();
       }
     });
   }
@@ -103,16 +128,18 @@ export class MainListTaskComponent implements OnInit {
       } else {
         this.getTasks();
       }
-    }, 10)
+    }, 10);
   }
 
   getTasks() {
     if (this.list.id != -1) {
       this.tasks$ = this.taskService.getTasks(this.list.id).subscribe(result => {
         this.tasks = result;
-        if (this.tasks.length == 0){
+        if (this.tasks.length == 0) {
           this.isEmpty = true;
         }
+        this.calculateCompleted();
+        this.tasks$.unsubscribe();
       });
     }
   }
