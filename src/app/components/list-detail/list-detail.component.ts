@@ -3,6 +3,7 @@ import {List} from "../../interfaces/list";
 import {ListService} from "../../services/list.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-list-detail',
@@ -14,9 +15,6 @@ export class ListDetailComponent implements OnInit {
   list$ : Subscription = new Subscription();
 
   constructor(private listService:ListService, private route: ActivatedRoute) {
-    // this.list$ = this.listService.selectedList.subscribe((list: List) => {
-    //   this.list = list;
-    // });
   }
 
   ngOnInit(): void {
@@ -24,9 +22,8 @@ export class ListDetailComponent implements OnInit {
     if (listId != null) {
       let listTemp = this.listService.getList(+listId) ?? null;
       if(listTemp != null) {
-        this.list$ = this.listService.getList(+listId).subscribe(result => {
+        this.list$ = this.listService.getList(+listId).pipe(take(1)).subscribe(result => {
           this.list = result;
-          this.list$.unsubscribe();
         });
       }
     }

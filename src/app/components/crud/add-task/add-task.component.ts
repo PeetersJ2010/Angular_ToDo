@@ -4,6 +4,7 @@ import {TaskService} from "../../../services/task.service";
 import {Task} from "../../../interfaces/task";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-task',
@@ -19,50 +20,66 @@ export class AddTaskComponent implements OnInit {
   editMode = false;
   isSubmitted: boolean = false;
   errorMessage: string = "";
-  task: Task = {id: 0, listId:0, title: "", completed: false, deadline:{year: 2021, month: 1, day: 1}};
+  task: Task = {id: 0, listId: 0, title: "", completed: false, deadline: {day: 1,  month: 1, year: 2021 }};
 
-  constructor(private taskService: TaskService, private bsModalRef: BsModalRef) { }
+  today = new Date();
+  day: number = 0;
+  month: number = 0;
+  year: number = 0;
 
-  ngOnInit(): void {
+  constructor(private taskService: TaskService, private bsModalRef: BsModalRef) {
   }
 
-  ngOnDestroy(){
-    this.addTask$.unsubscribe();
-    this.editTask$.unsubscribe();
+  ngOnInit(): void {
+    this.task.deadline.day = this.day = this.today.getDate();
+    this.task.deadline.month = this.month = this.today.getMonth() + 1;
+    this.task.deadline.year = this.year = this.today.getFullYear();
   }
 
   onClose() {
-    this.bsModalRef.hide();
+    this.emitNok()
   }
 
-  onTaskFormSubmit(){
+  onTaskFormSubmit() {
     this.isSubmitted = true;
-    if (!this.editMode){
-      this.addTask$ = this.taskService.addTask(this.task).subscribe(result => {
-          this.event.emit('OK');
-          this.bsModalRef.hide();
-          this.addTask$.unsubscribe();
+    if (!this.editMode) {
+      this.addTask$ = this.taskService.addTask(this.task).pipe(take(1)).subscribe(() => {
+          this.emitOk()
         },
         error => {
           this.errorMessage = error.message;
         });
-    }else{
-      // this.editList$ = this.listService.editList(this.list.id, this.list).subscribe(result => {
-      //     this.event.emit('OK');
-      //     this.bsModalRef.hide();
-      //
-      //     // Clear the task list component
-      //     this.router.navigate(['/']);
-      //
-      //     // Load the correct component after 10 ms
-      //     setTimeout(()=>{
-      //       this.router.navigate(['/', result.id]);
-      //     }, 10);
-      //   },
-      //   error => {
-      //     this.errorMessage = error.message;
-      //   });
+    } else {
+      this.editTask$ = this.taskService.editTask(this.task.id, this.task).subscribe(() => {
+        this.emitOk()
+        },
+        error => {
+          this.errorMessage = error.message;
+        });
     }
   }
 
+  // Emits a string value 'OK' to let the parent component know the form was submitted
+  emitOk(){
+    this.event.emit('OK');
+    this.bsModalRef.hide();
+    setTimeout(() => {
+      this.bsModalRef.content.event.unsubscribe();
+    }, 1000);
+  }
+
+  // Emits a string value 'NOK' to let the parent component know the form was NOT submitted
+  emitNok(){
+    this.event.emit('NOK');
+    this.bsModalRef.hide();
+    setTimeout(() => {
+      this.event.unsubscribe();
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    this.addTask$.unsubscribe();
+    this.editTask$.unsubscribe();
+    this.event.unsubscribe();
+  }
 }

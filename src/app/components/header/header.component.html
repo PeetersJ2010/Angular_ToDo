@@ -10,6 +10,13 @@
     </h3>
     <div class="d-flex">
       <app-header-tasks *ngFor="let task of tasks" [task]="task"></app-header-tasks>
+      <div *ngIf="isShortened">
+<!--        <i class="fas fa-ellipsis-h"></i>-->
+        {{totalLength - tasks.length}} more ...
+      </div>
+      <div *ngIf="tasks.length == 0">
+        No tasks due today!
+      </div>
     </div>
   </div>
 </div>

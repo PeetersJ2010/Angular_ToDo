@@ -2,7 +2,7 @@
   "lists": [
     {
       "id": 0,
-      "completed": "0/1",
+      "completed": "2/8",
       "title": "List 1",
       "color": "red"
     },
@@ -20,20 +20,14 @@
     },
     {
       "id": 3,
-      "completed": "0/0",
+      "completed": "1/1",
       "title": "List 4fe",
       "color": "blue"
     },
     {
       "id": 4,
-      "completed": "0/0",
-      "title": "ffff",
-      "color": "red"
-    },
-    {
-      "id": 5,
-      "completed": "0/0",
-      "title": "omiahj",
+      "completed": "0/5",
+      "title": "eeee",
       "color": "blue"
     }
   ],
@@ -46,7 +40,150 @@
       "deadline": {
         "year": 2021,
         "month": 1,
+        "day": 27
+      }
+    },
+    {
+      "id": 2,
+      "listId": 3,
+      "title": "bit h",
+      "completed": true,
+      "deadline": {
+        "year": 2021,
+        "month": 1,
+        "day": 1
+      }
+    },
+    {
+      "id": 3,
+      "listId": 0,
+      "title": "Hallo",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 1,
         "day": 23
+      }
+    },
+    {
+      "id": 4,
+      "listId": 0,
+      "title": "testje",
+      "completed": true,
+      "deadline": {
+        "year": 2021,
+        "month": 11,
+        "day": 22
+      }
+    },
+    {
+      "id": 5,
+      "listId": 0,
+      "title": "hoer",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 1,
+        "day": 9
+      }
+    },
+    {
+      "id": 6,
+      "listId": 0,
+      "title": "fezfe",
+      "completed": true,
+      "deadline": {
+        "year": 2021,
+        "month": 1,
+        "day": 1
+      }
+    },
+    {
+      "id": 7,
+      "listId": 0,
+      "title": "biych",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 1,
+        "day": 1
+      }
+    },
+    {
+      "id": 8,
+      "listId": 4,
+      "title": "kaka",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 9,
+      "listId": 4,
+      "title": "eeeee",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 10,
+      "listId": 4,
+      "title": "azezaeeza",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 11,
+      "listId": 4,
+      "title": "pie",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 11,
+        "day": 30
+      }
+    },
+    {
+      "id": 12,
+      "listId": 4,
+      "title": "apwkeee",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 13,
+      "listId": 0,
+      "title": "testje",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 14,
+      "listId": 0,
+      "title": "ddddd",
+      "completed": false,
+      "deadline": {
+        "day": 27,
+        "month": 11,
+        "year": 2021
       }
     }
   ]

@@ -1,1 +1,14 @@
-<p>delete-task works!</p>
+<div class="p-4">
+  <h4 class="text-primary">Remove task</h4>
+  <hr class="px-3 my-2">
+  <div class="modal-body px-0">
+    <p>
+      Are you sure you want to delete the task: <span class="font-weight-bold"> {{title}}</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="onClose()">Close</button>
+    <button type="button" class="btn btn-red" (click)="deleteTask(taskId)">Delete task</button>
+  </div>
+</div>
+

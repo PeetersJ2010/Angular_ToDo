@@ -7,8 +7,7 @@ import {Task} from "../../interfaces/task";
   styleUrls: ['./header-tasks.component.scss']
 })
 export class HeaderTasksComponent implements OnInit {
-  @Input() task: Task = {id:0, listId:0, completed:false, title:"",deadline:{year: 2021, month: 1, day: 1}}
-
+  @Input() task: Task = {id:0, listId:0, completed:false, title:"",deadline:{year: 2021, month: 1, day: 1}, list:{id:0, title: "", completed:"", color: ""}}
 
   constructor() { }
 

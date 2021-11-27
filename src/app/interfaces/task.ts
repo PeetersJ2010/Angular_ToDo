@@ -1,4 +1,5 @@
 import {NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {List} from "./list";
 
 export interface Task{
   id: number;
@@ -6,4 +7,5 @@ export interface Task{
   completed: boolean;
   title: String;
   deadline: NgbDateStruct;
+  list?: List;
 }

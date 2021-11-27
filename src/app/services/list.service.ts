@@ -2,27 +2,22 @@ import { Injectable } from '@angular/core';
 import {List} from "../interfaces/list";
 import {Task} from "../interfaces/task";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, timer} from "rxjs";
+import {switchMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
-  private lists: List[] = [];
-
-  private listSource = new BehaviorSubject<List>({id:0, completed:"", title:"", color:""});
-  selectedList = this.listSource.asObservable();
-
   constructor(private httpClient: HttpClient) {
   }
 
-  setSelectedList(list: List): Observable<List> {
-    this.listSource.next(list)
-    return this.selectedList;
+  getListsByColor(): Observable<List[]> {
+    return this.httpClient.get<List[]>("http://localhost:3000/lists?_sort=color&_order=asc");
   }
 
-  getLists(): Observable<List[]> {
-    return this.httpClient.get<List[]>("http://localhost:3000/lists");
+  getListsByTitle(): Observable<List[]> {
+    return this.httpClient.get<List[]>("http://localhost:3000/lists?_sort=title&_order=asc");
   }
 
   getList(id:number): Observable<List>{

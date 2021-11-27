@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {List} from "../../../interfaces/list";
 import {Task} from "../../../interfaces/task";
 import {Router} from "@angular/router";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-add-list',
@@ -41,48 +42,48 @@ export class AddListComponent implements OnInit {
   onListFormSubmit() {
     this.isSubmitted = true;
     if (!this.editMode){
-      this.addList$ = this.listService.addList(this.list).subscribe(result => {
+      this.addList$ = this.listService.addList(this.list).pipe(take(1)).subscribe(result => {
           this.event.emit('OK');
           this.bsModalRef.hide();
 
           // Clear the task list component
           this.router.navigate(['/']);
-
           // Load the correct component after 10 ms
           setTimeout(()=>{
             this.router.navigate(['/', result.id]);
           }, 10);
-          this.addList$.unsubscribe();
+
+          setTimeout(() => {
+            this.event.unsubscribe();
+          }, 2000);
         },
         error => {
           this.errorMessage = error.message;
         });
     }else{
-      this.editList$ = this.listService.editList(this.list.id, this.list).subscribe(result => {
+      this.editList$ = this.listService.editList(this.list.id, this.list).pipe(take(1)).subscribe(result => {
           this.event.emit('OK');
           this.bsModalRef.hide();
 
-          // Clear the task list component
-          this.router.navigate(['/']);
-
-          // Load the correct component after 10 ms
-          setTimeout(()=>{
-            this.router.navigate(['/', result.id]);
-          }, 10);
-          this.editList$.unsubscribe();
+          setTimeout(() => {
+            this.event.unsubscribe();
+          }, 2000);
         },
         error => {
           this.errorMessage = error.message;
         });
     }
 
-
   }
 
 
 
   onClose() {
+    this.event.emit('NOK');
     this.bsModalRef.hide();
+    setTimeout(() => {
+      this.event.unsubscribe();
+    }, 2000);
   }
 
 }
