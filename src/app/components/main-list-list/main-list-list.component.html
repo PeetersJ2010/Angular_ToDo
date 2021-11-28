@@ -6,7 +6,7 @@
         <span>{{lists.length}}</span>
       </div>
     </div>
-    <button class="pill btn btn-white shadow" (click)="sortLists()">Order by: {{listOrder}}</button>
+    <button *ngIf="lists.length != 0" class="pill btn btn-white shadow" (click)="sortLists()">Order by: {{listOrder}}</button>
     <div class="lists mt-4 overflow-auto">
       <div *ngFor="let list of lists" class="d-flex align-items-center list noSelect" (click)="detail(list.id)"
            id="{{list.id}}">

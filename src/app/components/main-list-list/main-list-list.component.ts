@@ -108,7 +108,7 @@ export class MainListListComponent implements OnInit {
     this.prevId = id;
 
     // Clear the task list component
-    this.router.navigate(['/'], );
+    this.router.navigate(['/']);
 
     // Load the correct component after 10 ms
     setTimeout(() => {

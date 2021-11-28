@@ -3,11 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import {AppComponent} from "./app.component";
 import {MainComponent} from "./components/main/main.component";
 import {ListDetailComponent} from "./components/list-detail/list-detail.component";
+import {MainListListComponent} from "./components/main-list-list/main-list-list.component";
 
 const routes: Routes = [
-  { path: '', component: ListDetailComponent},
-  { path: ':id', component: ListDetailComponent, outlet: "outlet"},
-
+  { path: ':id', component: ListDetailComponent},
 ];
 
 @NgModule({

@@ -18,4 +18,8 @@
     font-size: 1.2rem;
     line-height: 30px;
   }
+
+  @media screen and (max-width: 767px ){
+    *{color: white !important}
+  }
 }

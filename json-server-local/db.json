@@ -1,119 +1,35 @@
 {
   "lists": [
     {
-      "id": 0,
-      "completed": "0/6",
-      "title": "List 1",
-      "color": "red"
-    },
-    {
       "id": 1,
-      "completed": "0/0",
-      "title": "List 2",
-      "color": "red"
-    },
-    {
-      "id": 2,
-      "completed": "0/0",
-      "title": "List 3",
+      "completed": "3/5",
+      "title": "Winkel",
       "color": "green"
     },
     {
-      "id": 3,
-      "completed": "1/1",
-      "title": "List 4fe",
-      "color": "blue"
-    },
-    {
-      "id": 4,
-      "completed": "0/5",
-      "title": "eeee",
-      "color": "blue"
+      "id": 2,
+      "completed": "0/1",
+      "title": "Angular",
+      "color": "red"
     }
   ],
   "tasks": [
     {
+      "id": 1,
+      "listId": 1,
+      "title": "Appel",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 11,
+        "day": 27
+      }
+    },
+    {
       "id": 2,
-      "listId": 3,
-      "title": "bit h",
+      "listId": 1,
+      "title": "Brood",
       "completed": true,
-      "deadline": {
-        "year": 2021,
-        "month": 1,
-        "day": 1
-      }
-    },
-    {
-      "id": 3,
-      "listId": 0,
-      "title": "Hallo",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
-        "month": 1,
-        "day": 23
-      }
-    },
-    {
-      "id": 6,
-      "listId": 0,
-      "title": "fezfe",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
-        "month": 11,
-        "day": 28
-      }
-    },
-    {
-      "id": 7,
-      "listId": 0,
-      "title": "biych",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
-        "month": 1,
-        "day": 1
-      }
-    },
-    {
-      "id": 8,
-      "listId": 4,
-      "title": "kaka",
-      "completed": false,
-      "deadline": {
-        "day": 27,
-        "month": 11,
-        "year": 2021
-      }
-    },
-    {
-      "id": 9,
-      "listId": 4,
-      "title": "eeeee",
-      "completed": false,
-      "deadline": {
-        "day": 27,
-        "month": 11,
-        "year": 2021
-      }
-    },
-    {
-      "id": 10,
-      "listId": 4,
-      "title": "azezaeeza",
-      "completed": false,
-      "deadline": {
-        "day": 27,
-        "month": 11,
-        "year": 2021
-      }
-    },
-    {
-      "id": 11,
-      "listId": 4,
-      "title": "pie",
-      "completed": false,
       "deadline": {
         "year": 2021,
         "month": 11,
@@ -121,47 +37,47 @@
       }
     },
     {
-      "id": 12,
-      "listId": 4,
-      "title": "apwkeee",
+      "id": 3,
+      "listId": 2,
+      "title": "Study",
       "completed": false,
       "deadline": {
-        "day": 27,
+        "day": 28,
         "month": 11,
         "year": 2021
       }
     },
     {
-      "id": 13,
-      "listId": 0,
-      "title": "testje",
+      "id": 4,
+      "listId": 1,
+      "title": "test",
       "completed": false,
       "deadline": {
-        "year": 2021,
-        "month": 12,
-        "day": 4
-      }
-    },
-    {
-      "id": 14,
-      "listId": 0,
-      "title": "ddddd",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
+        "day": 28,
         "month": 11,
-        "day": 28
+        "year": 2021
       }
     },
     {
-      "id": 15,
-      "listId": 0,
-      "title": "dzdz",
-      "completed": false,
+      "id": 5,
+      "listId": 1,
+      "title": "test",
+      "completed": true,
       "deadline": {
-        "year": 2021,
-        "month": 12,
-        "day": 2
+        "day": 28,
+        "month": 11,
+        "year": 2021
+      }
+    },
+    {
+      "id": 6,
+      "listId": 1,
+      "title": "test",
+      "completed": true,
+      "deadline": {
+        "day": 28,
+        "month": 11,
+        "year": 2021
       }
     }
   ]

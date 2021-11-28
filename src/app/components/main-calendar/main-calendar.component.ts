@@ -44,7 +44,6 @@ export class MainCalendarComponent implements OnInit {
       }
       this.taskListTomorrow = result.filter(t => t.deadline.day == +dd && t.deadline.month == +mm && t.deadline.year == yyyy && !t.completed);
       this.taskListLater = result.filter(t => (yyyy + mm + dd) < t.deadline.year.toString() + t.deadline.month.toString().padStart(2, '0') + t.deadline.day.toString().padStart(2, '0') && !t.completed);
-      console.log(this.taskListLater)
     });
   }
 

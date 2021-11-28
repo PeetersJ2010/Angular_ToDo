@@ -1,7 +1,7 @@
 <form class="form-horizontal p-4" id="add-form" (ngSubmit)="onTaskFormSubmit()" #listForm="ngForm">
   <div>
     <h4 *ngIf="editMode == false" class="text-primary">Add task</h4>
-<!--    <h4 *ngIf="editMode == true" class="text-primary">Edit: {{listTitle}}</h4>-->
+    <h4 *ngIf="editMode == true" class="text-primary">Edit: {{task.title}}</h4>
     <hr class="px-3 my-2">
   </div>
   <div class="modal-body px-0">

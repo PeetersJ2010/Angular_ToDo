@@ -1,13 +1,80 @@
-.header-row{
-  height: 155px;
-  .header-profile{
-    width: 240px;
-    height: 100%;
-    background: rgb(47,93,98);
-    background: linear-gradient(135deg, rgba(47,93,98,1) 0%, rgba(94,139,126,1) 100%);
-    p{
-      line-height: 10px;
-      margin-bottom: 15px;
+@import "src/scss/variables";
+
+@media screen and (min-width: 768px ){
+  .header-row{
+    height: 155px;
+    .header-profile{
+      width: 240px;
+      height: 100%;
+      background: rgb(47,93,98);
+      background: linear-gradient(135deg, rgba(47,93,98,1) 0%, rgba(94,139,126,1) 100%);
+      p{
+        line-height: 10px;
+        margin-bottom: 15px;
+      }
     }
   }
 }
+
+@media screen and (max-width: 767px ){
+  .header-row{
+    height: 120px;
+    .header-profile{
+      width: 130px;
+      height: 100%;
+      background: rgb(47,93,98);
+      background: linear-gradient(135deg, rgba(47,93,98,1) 0%, rgba(94,139,126,1) 100%);
+      p{
+        display: none;
+      }
+    }
+  }
+}
+
+.navbar-toggler {
+  border-color: $primary;
+
+  &:hover {
+    span {
+      background: #ccc;
+    }
+  }
+
+  &:focus {
+    background: none;
+    outline: 0;
+
+    span {
+      background: #ccc;
+    }
+  }
+
+  span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin: 6px auto;
+    background: #fff;
+    transition: all .6s cubic-bezier(0.250, 0.100, 0.250, 1.000);
+  }
+
+
+  &[aria-expanded="true"] span:first-of-type {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  &[aria-expanded="true"] span:nth-of-type(2) {
+    opacity: 0;
+  }
+
+  &[aria-expanded="true"] span:last-of-type {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  &[aria-expanded="false"] span {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+

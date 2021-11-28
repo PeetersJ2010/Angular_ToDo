@@ -2,30 +2,36 @@
   <div>
     <div class="d-flex justify-content-between align-items-center ">
       <h2 class="text-primary">{{list.title}}</h2>
-      <div class="d-flex align-items-center">
-        <button class="crud-btn btn btn-white d-flex justify-content-center p-1 mr-2" (click)="editList()"> <i class="fas fa-pen"></i></button>
-        <button class="crud-btn btn btn-white d-flex justify-content-center p-1 mr-3" (click)="deleteList()"> <i class="fas fa-trash"></i></button>
-
+      <div class="d-flex align-items-center flex-column-reverse flex-sm-row">
+        <div class="d-flex align-items-center pt-2 pt-sm-0">
+          <button class="crud-btn btn btn-white d-flex justify-content-center p-1 mr-2" (click)="editList()"><i
+            class="fas fa-pen"></i></button>
+          <button class="crud-btn btn btn-white d-flex justify-content-center p-1 mr-3" (click)="deleteList()"><i
+            class="fas fa-trash"></i></button>
+        </div>
         <div class="list-count d-flex justify-content-center align-items-center shadow-sm">
           <span>{{list.completed}}</span>
         </div>
       </div>
     </div>
-    <button *ngIf="!isEmpty" class="pill btn btn-white shadow" (click)="sortTasksButton()">Order by: {{taskOrder}}</button>
-    <div class="tasks mt-4 px-4">
-
+    <button *ngIf="!isEmpty" class="pill btn btn-white shadow" (click)="sortTasksButton()">Order
+      by: {{taskOrder}}</button>
+    <div class="tasks mt-4 px-0 overflow-auto">
       <div *ngFor="let task of tasks">
         <div id="{{task.listId}}{{task.id}}" class="pl-1 d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="{{task.id}}{{task.title}}" [(ngModel)]="task.completed" (change)="setCompleted(task.id, task, list)">
+              <input type="checkbox" class="custom-control-input" id="{{task.id}}{{task.title}}"
+                     [(ngModel)]="task.completed" (change)="setCompleted(task.id, task, list)">
               <label class="custom-control-label noSelect" for="{{task.id}}{{task.title}}">{{task.title}}</label>
             </div>
           </div>
           <div class="d-flex align-items-center">
             <p class="mb-0">{{task.deadline.day}}/{{task.deadline.month}}/{{task.deadline.year}}</p>
-            <button class="crud-btn btn btn-white d-flex justify-content-center p-1 ml-2" (click)="editTask(task)"> <i class="fas fa-pen"></i></button>
-            <button class="crud-btn btn btn-white d-flex justify-content-center p-1" (click)="deleteTask(task)"> <i class="fas fa-trash"></i></button>
+            <button class="crud-btn btn btn-white d-flex justify-content-center p-1 ml-2" (click)="editTask(task)"><i
+              class="fas fa-pen"></i></button>
+            <button class="crud-btn btn btn-white d-flex justify-content-center p-1" (click)="deleteTask(task)"><i
+              class="fas fa-trash"></i></button>
           </div>
         </div>
 
