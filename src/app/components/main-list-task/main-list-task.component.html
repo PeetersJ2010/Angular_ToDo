@@ -15,7 +15,7 @@
     <div class="tasks mt-4 px-4">
 
       <div *ngFor="let task of tasks">
-        <div  class="d-flex align-items-center justify-content-between">
+        <div id="{{task.listId}}{{task.id}}" class="pl-1 d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" id="{{task.id}}{{task.title}}" [(ngModel)]="task.completed" (change)="setCompleted(task.id, task, list)">

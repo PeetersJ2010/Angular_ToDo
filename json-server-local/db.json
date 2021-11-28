@@ -2,7 +2,7 @@
   "lists": [
     {
       "id": 0,
-      "completed": "2/8",
+      "completed": "0/6",
       "title": "List 1",
       "color": "red"
     },
@@ -33,17 +33,6 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "listId": 0,
-      "title": "bitch",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
-        "month": 1,
-        "day": 27
-      }
-    },
-    {
       "id": 2,
       "listId": 3,
       "title": "bit h",
@@ -66,36 +55,14 @@
       }
     },
     {
-      "id": 4,
-      "listId": 0,
-      "title": "testje",
-      "completed": true,
-      "deadline": {
-        "year": 2021,
-        "month": 11,
-        "day": 22
-      }
-    },
-    {
-      "id": 5,
-      "listId": 0,
-      "title": "hoer",
-      "completed": false,
-      "deadline": {
-        "year": 2021,
-        "month": 1,
-        "day": 9
-      }
-    },
-    {
       "id": 6,
       "listId": 0,
       "title": "fezfe",
-      "completed": true,
+      "completed": false,
       "deadline": {
         "year": 2021,
-        "month": 1,
-        "day": 1
+        "month": 11,
+        "day": 28
       }
     },
     {
@@ -150,7 +117,7 @@
       "deadline": {
         "year": 2021,
         "month": 11,
-        "day": 30
+        "day": 29
       }
     },
     {
@@ -170,9 +137,9 @@
       "title": "testje",
       "completed": false,
       "deadline": {
-        "day": 27,
-        "month": 11,
-        "year": 2021
+        "year": 2021,
+        "month": 12,
+        "day": 4
       }
     },
     {
@@ -181,9 +148,20 @@
       "title": "ddddd",
       "completed": false,
       "deadline": {
-        "day": 27,
+        "year": 2021,
         "month": 11,
-        "year": 2021
+        "day": 28
+      }
+    },
+    {
+      "id": 15,
+      "listId": 0,
+      "title": "dzdz",
+      "completed": false,
+      "deadline": {
+        "year": 2021,
+        "month": 12,
+        "day": 2
       }
     }
   ]

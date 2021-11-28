@@ -1,0 +1,8 @@
+<div class="d-flex flex-column text-center px-2 pt-3">
+  <h4 class="mb-2">Today</h4>
+  <app-header-tasks *ngFor="let task of taskListToday" [task]="task"></app-header-tasks>
+  <h4 class="mb-2 mt-3">Tomorrow</h4>
+  <app-header-tasks *ngFor="let task of taskListTomorrow" [task]="task"></app-header-tasks>
+  <h4 class="mb-2 mt-3">Upcoming ...</h4>
+  <app-header-tasks *ngFor="let task of taskListLater" [task]="task"></app-header-tasks>
+</div>

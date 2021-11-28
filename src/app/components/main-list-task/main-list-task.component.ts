@@ -31,7 +31,7 @@ export class MainListTaskComponent implements OnInit {
   // Filter option
   taskOrder = "Completed";
 
-  constructor(private taskService: TaskService, private bsModalService: BsModalService,private route: ActivatedRoute, private router: Router, private listTaskService: ListTaskService, private listService: ListService) {
+  constructor(private taskService: TaskService, private bsModalService: BsModalService, private route: ActivatedRoute, private router: Router, private listTaskService: ListTaskService, private listService: ListService) {
     // this.listTaskService.reloadLists.subscribe((state:boolean) => {});
   }
 
@@ -150,14 +150,14 @@ export class MainListTaskComponent implements OnInit {
       if (result == 'OK') {
         // Reload lists
         this.listTaskService.editList(true);
-      }else if (result == 'NOK'){
+      } else if (result == 'NOK') {
         this.list = listOld;
       }
 
       // Refresh list detail
       let listId = this.route.snapshot.paramMap.get('id');
       this.router.navigate(['/']);
-      setTimeout(()=>{
+      setTimeout(() => {
         this.router.navigate(['/', listId]);
       }, 10);
 
@@ -176,7 +176,7 @@ export class MainListTaskComponent implements OnInit {
       // Refresh list detail
       let listId = this.route.snapshot.paramMap.get('id');
       this.router.navigate(['/']);
-      setTimeout(()=>{
+      setTimeout(() => {
         this.router.navigate(['/', listId]);
       }, 10);
 
@@ -206,10 +206,35 @@ export class MainListTaskComponent implements OnInit {
         this.tasks = result;
         if (this.tasks.length == 0) {
           this.isEmpty = true;
-        }else{
-          if (this.taskOrder == "Date"){
-            this.tasks.sort((y, x) => (x.deadline.year.toString() + "-" + x.deadline.month.toString() + "-" + x.deadline.day.toString() > y.deadline.year.toString()+ "-" + y.deadline.month.toString()+ "-" + y.deadline.month.toString() ? -1 : 1));
+        } else {
+          if (this.taskOrder == "Date") {
+            this.tasks.sort((y, x) => (x.deadline.year.toString() + x.deadline.month.toString().padStart(2, '0') + x.deadline.day.toString().padStart(2, '0') > y.deadline.year.toString() + y.deadline.month.toString().padStart(2, '0') + y.deadline.month.toString().padStart(2, '0') ? -1 : 1));
           }
+          // Check if task due date has passed, if so: apply style
+          setTimeout(() => {
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = today.getFullYear();
+            let fullDateToday = yyyy + mm + dd;
+            for (let task of this.tasks) {
+              let taskElement = document.getElementById(task.listId.toString() + task.id.toString());
+              if(!task.completed){
+                let fullDateTask = task.deadline.year.toString() + task.deadline.month.toString().padStart(2, '0') + task.deadline.day.toString().padStart(2, '0');
+                // Task due date has passed
+                if (fullDateTask < fullDateToday) {
+                  taskElement!.className = 'rounded pl-1 d-flex align-items-center justify-content-between task-passed';
+                }
+                // Due today
+                if (fullDateTask == fullDateToday) {
+                  taskElement!.className = 'rounded pl-1 d-flex align-items-center justify-content-between task-due-today';
+                }
+              }else{
+                // Task is completed
+                taskElement!.className = 'rounded pl-1 d-flex align-items-center justify-content-between task-completed';
+              }
+            }
+          }, 100);
         }
       });
     }

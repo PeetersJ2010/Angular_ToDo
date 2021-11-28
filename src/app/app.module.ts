@@ -18,6 +18,7 @@ import { DeleteListComponent } from './components/crud/delete-list/delete-list.c
 import { AddTaskComponent } from './components/crud/add-task/add-task.component';
 import { DeleteTaskComponent } from './components/crud/delete-task/delete-task.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainCalendarComponent } from './components/main-calendar/main-calendar.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DeleteListComponent,
     AddTaskComponent,
     DeleteTaskComponent,
+    MainCalendarComponent,
   ],
   imports: [
     BrowserModule,
